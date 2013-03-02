@@ -4,9 +4,10 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Create new project</title>
+        <title>Facelet Title</title>
     </h:head>
     <h:body>
+
         <h3>Create new project idea.</h3>
         <h:form>
             <h:panelGrid columns="3">
@@ -14,19 +15,19 @@
                 <h:inputText id="pTitle" value="#{projectBean.project.title}"
                              required="true"/>
                 <h:message for="pTitle"/>
-                
+
                 <h:outputLabel value="Project objective:" for="pObjective"/>
                 <h:inputText id="pObjective" value="#{projectBean.project.objective}"/>
                 <h:message for="pObjective"/>
-                
+
                 <h:outputLabel value="Academic questions:" for="aQuestions"/>
                 <h:inputText id="aQuestions" value="#{projectBean.project.academicQuestions}"/>
                 <h:message for="aQuestions"/>
-                
+
                 <h:outputLabel value="Deliverables:" for="deliverables"/>
                 <h:inputText id="deliverables" value="#{projectBean.project.deliverables}"/>
                 <h:message for="deliverables"/>
-                
+
                 <h:outputLabel value="Difficulty" for="difficulty"/>
                 <h:selectOneMenu id="difficulty" value="#{projectBean.project.difficulty}">
                     <f:selectItem itemLabel="" itemValue=""/>
@@ -37,7 +38,6 @@
                 <h:message for="difficulty"/>
                 <h:panelGroup/>
                 <h:commandButton id="create" value="Create Project" action="#{projectBean.create}"/>
-                <h:commandButton id="create" value="Create Project" action="confiramtion"/>
                 <!--TO DO
                     add inserting of company.
                 -->
@@ -46,6 +46,3 @@
     </h:body>
 </html>
 
-<!--
-    
--->
