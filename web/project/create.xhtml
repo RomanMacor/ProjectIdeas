@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Create new project</title>
+    </h:head>
+    <h:body>
+        <h3>Create new project idea.</h3>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Project title:" for="pTitle"/>
+                <h:inputText id="pTitle" value="#{projectBean.project.title}"
+                             required="true"/>
+                <h:message for="pTitle"/>
+                
+                <h:outputLabel value="Project objective:" for="pObjective"/>
+                <h:inputText id="pObjective" value="#{projectBean.project.objective}"/>
+                <h:message for="pObjective"/>
+                
+                <h:outputLabel value="Academic questions:" for="aQuestions"/>
+                <h:inputText id="aQuestions" value="#{projectBean.project.academicQuestions}"/>
+                <h:message for="aQuestions"/>
+                
+                <h:outputLabel value="Deliverables:" for="deliverables"/>
+                <h:inputText id="deliverables" value="#{projectBean.project.deliverables}"/>
+                <h:message for="deliverables"/>
+                
+                <h:outputLabel value="Difficulty" for="difficulty"/>
+                <h:selectOneMenu id="difficulty" value="#{projectBean.project.difficulty}">
+                    <f:selectItem itemLabel="" itemValue=""/>
+                    <f:selectItem itemLabel="Easy" itemValue="easy"/>
+                    <f:selectItem itemLabel="Average" itemValue="average" />
+                    <f:selectItem itemLabel="Difficult" itemValue="Difficult"/>
+                </h:selectOneMenu>
+                <h:message for="difficulty"/>
+                <h:panelGroup/>
+                <h:commandButton id="create" value="Create Project" action="#{projectBean.create}"/>
+                <h:commandButton id="create" value="Create Project" action="confiramtion"/>
+                <!--TO DO
+                    add inserting of company.
+                -->
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
+<!--
+    
+-->
