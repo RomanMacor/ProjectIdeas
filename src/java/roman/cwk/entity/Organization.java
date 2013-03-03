@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -20,10 +21,11 @@ import javax.persistence.OneToMany;
 public class Organization implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-      private String name;
+    @NotNull
+    private String organizationName;
+    @NotNull
+    private String password;
+    
     //Change to a better type
     private String address;
     private String contactName;
@@ -32,12 +34,21 @@ public class Organization implements Serializable {
     @OneToMany(mappedBy = "organization")
     private Collection<Project> projects;
 
-    public String getName() {
-        return name;
+    public String getPassword() {
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
     }
 
     public String getAddress() {
@@ -81,31 +92,21 @@ public class Organization implements Serializable {
     }
     
     
-            
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (organizationName != null ? organizationName.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Organization)) {
             return false;
         }
         Organization other = (Organization) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.organizationName == null && other.organizationName != null) || (this.organizationName != null && !this.organizationName.equals(other.organizationName))) {
             return false;
         }
         return true;
@@ -113,7 +114,7 @@ public class Organization implements Serializable {
 
     @Override
     public String toString() {
-        return "roman.cwk.entity.Organization[ id=" + id + " ]";
+        return "roman.cwk.entity.Organization[ name=" + organizationName + " ]";
     }
     
 }

@@ -7,8 +7,34 @@
         <title>Confirmation page</title>
     </h:head>
     <h:body>
-        Confirmed
+        <h3>New project idea was created.</h3>
+        <!--TO DO: redirect this to the list all page.-->
+        <h:link outcome="/project/create" value="Create new page." />
+        <br/>
         
+        <h:panelGrid columns="2">
+
+            <h:outputText value="Project title:"/>
+            <h:outputText value="#{projectBean.project.title}" />
+
+            <h:outputText value="Project objective:"/>
+            <h:outputText value="#{projectBean.project.objective}" />
+
+            <h:outputText value="Academic questions:"/>
+            <h:outputText value="#{projectBean.project.academicQuestions}" />
+
+            <h:outputText value="Deliverables:"/>
+            <h:outputText value="#{projectBean.project.deliverables}" />
+
+            <h:outputText value="Project difficulty:"/>
+            <h:outputText value="#{projectBean.project.difficulty}" />
+
+            <h:outputText value="Company:"/>
+            <!--TO DO
+                showing the company
+            -->
+
+        </h:panelGrid>
     </h:body>
 </html>
 

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Registration page</title>
+    </h:head>
+    <h:body>
+        <h3>Registration page.</h3>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Organization name:" for="oName"/>
+                <h:inputText id="oName" value="#{registrationBean.organization.organizationName}"
+                             required="true"/>
+                <h:message for="oName"/>
+
+                <h:outputLabel value="Password:" for="password"/>
+                <h:inputSecret id="password" value="#{registrationBean.organization.password}"
+                               required="true"/>
+                <h:message for="password"/>
+
+                <h:outputLabel value="Address:" for="address"/>
+                <h:inputText id="address" value="#{registrationBean.organization.address}"/>
+                <h:message for="address"/>
+
+                <h:outputLabel value="Contact name:" for="cName"/>
+                <h:inputSecret id="cName" value="#{registrationBean.organization.contactName}"/>
+                <h:message for="cName"/>
+
+                <h:outputLabel value="Phone number:" for="number"/>
+                <h:inputSecret id="number" value="#{registrationBean.organization.phoneNumber}"/>
+                <h:message for="number"/>                
+                
+                <h:outputLabel value="Email:" for="email"/>
+                <h:inputSecret id="email" value="#{registrationBean.organization.email}"/>
+                <h:message for="email"/>
+                
+                <h:panelGroup/>
+                <h:commandButton id="register" value="Register" action="#{registrationBean.register}"/>
+
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
