@@ -7,6 +7,7 @@ package roman.cwk.managedbeans;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
@@ -20,7 +21,8 @@ import roman.cwk.sessionbeans.UserGroupFacade;
  * @author Roman Macor
  */
 @ManagedBean
-@RequestScoped
+//@RequestScoped
+@SessionScoped
 public class RegistrationBean {
 
     //all the organization will fall to this group

@@ -32,6 +32,7 @@ public class ProjectBean {
     private OrganizationFacade ejbOrganizationFacade;
 //    @ManagedProperty(value="#{registrationBean}")
 //    private RegistrationBean registration;
+
     /**
      * Creates a new instance of ProjectBean
      */
@@ -48,10 +49,12 @@ public class ProjectBean {
     public void setProject(Project project) {
         this.project = project;
     }
-     public String getLogedUsername() {
+
+    public String getLogedUsername() {
         String userName = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         return userName;
     }
+
     public String create() {
         String organizationName = this.getLogedUsername();
         Organization organization = ejbOrganizationFacade.find(organizationName);
@@ -59,12 +62,21 @@ public class ProjectBean {
         ejbProjectFacade.create(project);
         return "confirmation";
     }
-    public List<Project> getAllProjects(){
+
+    public List<Project> getAllProjects() {
         return ejbProjectFacade.findAll();
     }
-    public String prepareDetail(Project project){
-        this.project = project;
+    public List<Project> getProjectsForLogedUser() {
+        return ejbProjectFacade.findProjectsForLogedinUser("apple");
+    }
+
+    public String prepareDetail(Long id) {
+        project = ejbProjectFacade.find(id);
         return "detail";
-        
+    }
+
+    public String prepareCreate() {
+        project = new Project();
+        return "/project/create";
     }
 }

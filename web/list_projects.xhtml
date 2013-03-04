@@ -7,13 +7,21 @@
         <title>List all projects</title>
     </h:head>
     <h:body>
-        <h:dataTable value="#{projectBean.allProjects}" var="project">
-            <f:facet name="header">Project Ideas</f:facet>
-            
-            <h:column><h:link outcome="#{projectBean.prepareDetail(project)}" 
-                              value="#{project.title}"/></h:column>
-            <h:column><h:outputText value="#{project.organization.organizationName}"/></h:column>
-        </h:dataTable>
+        <h:form>
+            <h:dataTable value="#{projectBean.allProjects}" var="project">
+                <f:facet name="header">Project Ideas</f:facet>
+
+                <h:column>
+                    <h:panelGrid columns="2" >
+                    <h:commandLink action="#{projectBean.prepareDetail(project.id)}" 
+                                   value="#{project.title}" />
+                    <h:panelGroup />
+                    <h:outputText value="#{project.organization.contactName}"/>
+                    <h:outputText value=", #{project.organization.organizationName}"/>
+                    </h:panelGrid>
+                </h:column>
+            </h:dataTable>
+        </h:form>
     </h:body>
 </html>
 

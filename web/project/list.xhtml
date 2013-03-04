@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>List all items</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:dataTable value="#{projectBean.projectsForLogedUser}" var="project">
+                <f:facet name="header">
+                    <h:column> <h:outputText value="Title" /> </h:column>
+                    <h:column> <h:outputText value="Objective" /> </h:column>
+                    <h:column> <h:outputText value="Academic questions" /> </h:column>
+                    <h:column> <h:outputText value="Deliverables" /> </h:column>
+                    <h:column> <h:outputText value="Difficulty" /> </h:column>
+                </f:facet>
+                <h:column> <h:outputText value="#{project.title}" /> </h:column>
+                <h:column> <h:outputText value="#{project.objective}" /> </h:column>
+                <h:column> <h:outputText value="#{project.academicQuestions}" /> </h:column>
+                <h:column> <h:outputText value="#{project.deliverables}" /> </h:column>
+                <h:column> <h:outputText value="#{project.difficulty}" /> </h:column>
+                <h:column> <h:commandButton value="Edit"/> </h:column>
+                <h:column> <h:commandButton  value="Delete"/> </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
