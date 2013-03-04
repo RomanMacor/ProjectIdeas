@@ -7,6 +7,9 @@ package roman.cwk.managedbeans;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpSession;
 import roman.cwk.entity.Organization;
 import roman.cwk.entity.UserGroup;
 import roman.cwk.sessionbeans.OrganizationFacade;
@@ -22,7 +25,6 @@ public class RegistrationBean {
 
     //all the organization will fall to this group
     private static final String USER_GROUP = "organization";
-    
     private Organization organization;
     private UserGroup userGroup;
     private String repeatPassword;
@@ -58,7 +60,6 @@ public class RegistrationBean {
 //    public void setUserGroup(UserGroup userGroup) {
 //        this.userGroup = userGroup;
 //    }
-
     public String getRepeatPassword() {
         return repeatPassword;
     }
@@ -66,16 +67,37 @@ public class RegistrationBean {
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
     }
-    public String register(){
-        
+
+    public String register() {
+
         userGroup = new UserGroup();
         userGroup.setGroupName(USER_GROUP);
         userGroup.setOrganizationName(organization.getOrganizationName());
-        
+
         ejbOrgFacade.create(organization);
         ejbGroupOrgFacade.create(userGroup);
-        
+
         //TODO change to confirmation
         return "confirmation";
+    }
+    
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        session.invalidate();
+        return "/index";
+    }
+
+    public boolean isLoggedIn() {
+        String userName = this.getLogedUsername();
+        if (userName == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public String getLogedUsername() {
+        String userName = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        return userName;
     }
 }

@@ -4,10 +4,16 @@
  */
 package roman.cwk.managedbeans;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import roman.cwk.entity.Organization;
 import roman.cwk.entity.Project;
+import roman.cwk.sessionbeans.OrganizationFacade;
 import roman.cwk.sessionbeans.ProjectFacade;
 
 /**
@@ -15,13 +21,17 @@ import roman.cwk.sessionbeans.ProjectFacade;
  * @author Roman Macor
  */
 @ManagedBean
-@RequestScoped
+//@RequestScoped
+@SessionScoped
 public class ProjectBean {
 
     private Project project;
     @EJB
-    private ProjectFacade ejbFacade;
-
+    private ProjectFacade ejbProjectFacade;
+    @EJB
+    private OrganizationFacade ejbOrganizationFacade;
+//    @ManagedProperty(value="#{registrationBean}")
+//    private RegistrationBean registration;
     /**
      * Creates a new instance of ProjectBean
      */
@@ -38,9 +48,23 @@ public class ProjectBean {
     public void setProject(Project project) {
         this.project = project;
     }
-
+     public String getLogedUsername() {
+        String userName = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        return userName;
+    }
     public String create() {
-        ejbFacade.create(project);
+        String organizationName = this.getLogedUsername();
+        Organization organization = ejbOrganizationFacade.find(organizationName);
+        project.setOrganization(organization);
+        ejbProjectFacade.create(project);
         return "confirmation";
+    }
+    public List<Project> getAllProjects(){
+        return ejbProjectFacade.findAll();
+    }
+    public String prepareDetail(Project project){
+        this.project = project;
+        return "detail";
+        
     }
 }

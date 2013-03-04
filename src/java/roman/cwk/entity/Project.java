@@ -71,7 +71,11 @@ public class Project implements Serializable {
     }
 
     public Organization getOrganization() {
-        return organization;
+        if (organization == null){
+            return new Organization();
+        }else{
+            return organization;
+        }
     }
 
     public void setOrganization(Organization organization) {

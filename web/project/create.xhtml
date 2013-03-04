@@ -4,10 +4,10 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Create new project idea.</title>
     </h:head>
     <h:body>
-
+        
         <h3>Create new project idea.</h3>
         <h:form>
             <h:panelGrid columns="3">
@@ -36,11 +36,14 @@
                     <f:selectItem itemLabel="Difficult" itemValue="Difficult"/>
                 </h:selectOneMenu>
                 <h:message for="difficulty"/>
+                
+                <h:outputLabel value="Created by:" for="company"/>
+                <h:inputText id="company" readonly="true" value="#{registrationBean.logedUsername}"/>
+                <h:message for="company"/>
+                
                 <h:panelGroup/>
                 <h:commandButton id="create" value="Create Project" action="#{projectBean.create}"/>
-                <!--TO DO
-                    add inserting of company.
-                -->
+                
             </h:panelGrid>
         </h:form>
     </h:body>

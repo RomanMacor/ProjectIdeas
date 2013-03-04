@@ -8,6 +8,7 @@
     </h:head>
     <h:body>
         <h3>New project idea was created.</h3>
+        <h:link outcome="/index" value="Home" />
         <!--TO DO: redirect this to the list all page.-->
         <h:link outcome="/project/create" value="Create new page." />
         <br/>
@@ -30,9 +31,7 @@
             <h:outputText value="#{projectBean.project.difficulty}" />
 
             <h:outputText value="Company:"/>
-            <!--TO DO
-                showing the company
-            -->
+            <h:outputText value="#{projectBean.project.organization.organizationName}" />
 
         </h:panelGrid>
     </h:body>

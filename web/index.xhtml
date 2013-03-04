@@ -7,7 +7,14 @@
     </h:head>
     <h:body>
         <h1>Project ideas web application</h1>
+        <!--TODO: Put this into template file.-->
+        <h:link outcome="#{registrationBean.logout()}" value="Logout" rendered="#{registrationBean.loggedIn}"/>
+        <h:link outcome="login" value="Login" rendered="#{!registrationBean.loggedIn}"/>
+        
+        <br/>
         <h:link outcome="/project/create" value="Create project idea." />
+        <br/>
+        <h:link outcome="/list_projects" value="List all projects" />
     </h:body>
 </html>
 
