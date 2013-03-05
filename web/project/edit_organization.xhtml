@@ -14,11 +14,6 @@
                              required="true" disabled="true"/>
                 <h:message for="oName"/>
 
-                <h:outputLabel value="Password:" for="password"/>
-                <h:inputSecret id="password" value="#{registrationBean.organization.password}"
-                               required="true"/>
-                <h:message for="password"/>
-
                 <h:outputLabel value="Address:" for="address"/>
                 <h:inputText id="address" value="#{registrationBean.organization.address}"/>
                 <h:message for="address"/>
@@ -36,7 +31,7 @@
                 <h:message for="email"/>
                 
                 <h:commandButton id="register" value="Edit details" action="#{registrationBean.edit}"/>
-                <h:commandButton id="cancel" value="Cancel" action="/index"/>
+                <h:commandButton id="cancel" value="Cancel" action="/project/index"/>
 
             </h:panelGrid>
         </h:form>

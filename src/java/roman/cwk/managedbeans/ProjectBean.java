@@ -60,7 +60,7 @@ public class ProjectBean {
         Organization organization = ejbOrganizationFacade.find(organizationName);
         project.setOrganization(organization);
         ejbProjectFacade.create(project);
-        return "confirmation";
+        return "/project/list";
     }
 
     public List<Project> getAllProjects() {
