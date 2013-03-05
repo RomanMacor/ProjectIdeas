@@ -8,13 +8,12 @@
     <h:body>
         <h1>Project ideas web application</h1>
         <!--TODO: Put this into template file.-->
-        <h:link outcome="#{registrationBean.logout()}" value="Logout" rendered="#{registrationBean.loggedIn}"/>
-        <h:link outcome="/project/index" value="Login/Register" rendered="#{!registrationBean.loggedIn}"/>
-        
-        <br/>
-        <h:link outcome="/list_projects" value="List all projects" />
-        <br/>
-        <h:link outcome="/project/index" value="Go to profile" />
+        <h:panelGrid columns="1">
+            <h:link outcome="#{registrationBean.logout()}" value="Logout" rendered="#{registrationBean.loggedIn}"/>
+            <h:link outcome="/project/index" value="Login/Register" rendered="#{!registrationBean.loggedIn}"/>
+            <h:link outcome="/project/index" value="Go to profile" rendered="#{registrationBean.loggedIn}"/>
+            <h:link outcome="/list_projects" value="List all projects" />
+        </h:panelGrid>
     </h:body>
 </html>
 
