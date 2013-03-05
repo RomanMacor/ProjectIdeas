@@ -16,8 +16,8 @@
                     <h:commandLink action="#{projectBean.prepareDetail(project.id)}" 
                                    value="#{project.title}" />
                     <h:panelGroup />
-                    <h:outputText value="#{project.organization.contactName}"/>
-                    <h:outputText value=", #{project.organization.organizationName}"/>
+                    <h:outputText value="#{project.organization.contactName}, "/>
+                    <h:outputText value="#{project.organization.organizationName}"/>
                     </h:panelGrid>
                 </h:column>
             </h:dataTable>

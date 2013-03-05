@@ -3,15 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>Registration page</title>
+        <title>Edit organization detail</title>
     </h:head>
     <h:body>
-        <h3>Registration page.</h3>
+        <h3>Edit organization detail.</h3>
         <h:form>
             <h:panelGrid columns="3">
                 <h:outputLabel value="Organization name:" for="oName"/>
                 <h:inputText id="oName" value="#{registrationBean.organization.organizationName}"
-                             required="true"/>
+                             required="true" disabled="true"/>
                 <h:message for="oName"/>
 
                 <h:outputLabel value="Password:" for="password"/>
@@ -35,10 +35,11 @@
                 <h:inputText id="email" value="#{registrationBean.organization.email}"/>
                 <h:message for="email"/>
                 
-                <h:panelGroup/>
-                <h:commandButton id="register" value="Register" action="#{registrationBean.register}"/>
+                <h:commandButton id="register" value="Edit details" action="#{registrationBean.edit}"/>
+                <h:commandButton id="cancel" value="Cancel" action="/index"/>
 
             </h:panelGrid>
         </h:form>
     </h:body>
 </html>
+

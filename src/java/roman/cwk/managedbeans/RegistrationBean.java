@@ -82,7 +82,7 @@ public class RegistrationBean {
         //TODO change to confirmation
         return "confirmation";
     }
-    
+
     public String logout() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         session.invalidate();
@@ -101,5 +101,15 @@ public class RegistrationBean {
     public String getLogedUsername() {
         String userName = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         return userName;
+    }
+
+    public String prepareEditOrganization() {
+        String organizationName = this.getLogedUsername();
+        organization = ejbOrgFacade.find(organizationName);
+        return "/project/edit_organization";
+    }
+    public String edit(){
+        ejbOrgFacade.edit(organization);
+        return "/project/index";
     }
 }

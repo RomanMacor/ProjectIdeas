@@ -66,8 +66,10 @@ public class ProjectBean {
     public List<Project> getAllProjects() {
         return ejbProjectFacade.findAll();
     }
+
     public List<Project> getProjectsForLogedUser() {
-        return ejbProjectFacade.findProjectsForLogedinUser("apple");
+        String organizationName = this.getLogedUsername();
+        return ejbProjectFacade.findProjectsForLogedinUser(organizationName);
     }
 
     public String prepareDetail(Long id) {
@@ -78,5 +80,19 @@ public class ProjectBean {
     public String prepareCreate() {
         project = new Project();
         return "/project/create";
+    }
+
+    public String detele(Project project) {
+        ejbProjectFacade.remove(project);
+        return "/project/list";
+    }
+
+    public String prepareEdit(Project project) {
+        this.project = project;
+        return "/project/edit";
+    }
+    public String edit(){
+        ejbProjectFacade.edit(project);
+        return "/project/list";
     }
 }

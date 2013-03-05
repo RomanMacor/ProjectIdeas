@@ -9,13 +9,12 @@
         <h1>Project ideas web application</h1>
         <!--TODO: Put this into template file.-->
         <h:link outcome="#{registrationBean.logout()}" value="Logout" rendered="#{registrationBean.loggedIn}"/>
-        <h:link outcome="login" value="Login" rendered="#{!registrationBean.loggedIn}"/>
+        <h:link outcome="/project/index" value="Login/Register" rendered="#{!registrationBean.loggedIn}"/>
         
         <br/>
-        <!--<h:link outcome="/project/create" value="Create project idea." />-->
-        <h:link outcome="#{projectBean.prepareCreate()}" value="Create project idea." />
-        <br/>
         <h:link outcome="/list_projects" value="List all projects" />
+        <br/>
+        <h:link outcome="/project/index" value="Go to profile" />
     </h:body>
 </html>
 

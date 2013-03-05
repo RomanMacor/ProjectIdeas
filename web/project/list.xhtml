@@ -7,6 +7,7 @@
         <title>List all items</title>
     </h:head>
     <h:body>
+        <h:link outcome="#{projectBean.prepareCreate()}" value="Create a new project" />
         <h:form>
             <h:dataTable value="#{projectBean.projectsForLogedUser}" var="project">
                 <f:facet name="header">
@@ -21,8 +22,8 @@
                 <h:column> <h:outputText value="#{project.academicQuestions}" /> </h:column>
                 <h:column> <h:outputText value="#{project.deliverables}" /> </h:column>
                 <h:column> <h:outputText value="#{project.difficulty}" /> </h:column>
-                <h:column> <h:commandButton value="Edit"/> </h:column>
-                <h:column> <h:commandButton  value="Delete"/> </h:column>
+                <h:column> <h:commandButton action="#{projectBean.prepareEdit(project)}" value="Edit"/> </h:column>
+                <h:column> <h:commandButton action="#{projectBean.detele(project)}" value="Delete"/> </h:column>
             </h:dataTable>
         </h:form>
     </h:body>
