@@ -23,7 +23,7 @@ public class ProjectService {
     private ProjectFacade ejbProjectFacade;
     @EJB
     private OrganizationFacade ejbOrganizationFacade;
-    private String projectCurrentTitle;
+    private String projectCurrentTitle = "";
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 

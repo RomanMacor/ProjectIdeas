@@ -11,7 +11,7 @@
         <h3>Create new project idea.</h3>
         <h:form>
             <h:panelGrid columns="3">
-                <h:outputLabel value="Project title:" for="pTitle"/>
+                <h:outputLabel value="Project title: *" for="pTitle"/>
                 <h:inputText id="pTitle" value="#{projectBean.project.title}"
                              label="Project Title" required="true"/>
                 <h:message for="pTitle"/>
@@ -37,7 +37,7 @@
                     <f:selectItem itemLabel="" itemValue=""/>
                     <f:selectItem itemLabel="Easy" itemValue="easy"/>
                     <f:selectItem itemLabel="Average" itemValue="average" />
-                    <f:selectItem itemLabel="Difficult" itemValue="Difficult"/>
+                    <f:selectItem itemLabel="Difficult" itemValue="difficult"/>
                 </h:selectOneMenu>
                 <h:message for="difficulty"/>
                 

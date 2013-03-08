@@ -33,10 +33,7 @@ public class OrganizationBean extends BaseBean {
     //all the organization will fall to this group
     private Organization organization;
     private String repeatPassword;
-    @EJB
-    private OrganizationFacade ejbOrgFacade;
-    @EJB
-    private UserGroupFacade ejbGroupOrgFacade;
+    private String currentPassword;
     @EJB
     private OrganizationService ejbOrganizationService;
 
@@ -45,26 +42,34 @@ public class OrganizationBean extends BaseBean {
      */
     public OrganizationBean() {
     }
-    
+
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
+    }
+
     public Organization getOrganization() {
         if (organization == null) {
             organization = new Organization();
         }
         return organization;
     }
-    
+
     public void setOrganization(Organization organization) {
         this.organization = organization;
     }
-    
+
     public String getRepeatPassword() {
         return repeatPassword;
     }
-    
+
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
     }
-    
+
     public String register() {
         try {
             ejbOrganizationService.register(organization);
@@ -75,9 +80,9 @@ public class OrganizationBean extends BaseBean {
         }
         return "confirmation";
     }
-    
+
     public String prepareEditOrganization() {
-        
+
         String organizationName = this.getLogedUsername();
         try {
             organization = ejbOrganizationService.prepareEditOrganization(organizationName);
@@ -88,10 +93,17 @@ public class OrganizationBean extends BaseBean {
         }
         return "/project/edit_organization";
     }
-    
+
     public String edit() {
+
+        organization = ejbOrganizationService.edit(organization);
+
+        return "/project/index";
+    }
+
+    public String changePassword() {
         try {
-            organization = ejbOrganizationService.edit(organization);
+            ejbOrganizationService.changePassword(currentPassword, organization);
         } catch (BusinessException ex) {
             Logger.getLogger(OrganizationBean.class.getName()).log(Level.SEVERE, null, ex);
             addErrorMessage(ex.getMessage());
@@ -99,18 +111,18 @@ public class OrganizationBean extends BaseBean {
         }
         return "/project/index";
     }
-    
+
     public void checkPasswordsEquality(FacesContext context,
             UIComponent toValidate, Object value) {
-        
+
         UIInput passwordComponent = (UIInput) toValidate.getAttributes().get("password");
         String password = (String) passwordComponent.getValue();
-        
+
         String repeatedPassword = (String) value;
-        
+
         if (!repeatedPassword.equals(password)) {
             ((UIInput) toValidate).setValid(false);
-            
+
             context.addMessage(toValidate.getClientId(context),
                     new FacesMessage("Passwords don't match."));
         }

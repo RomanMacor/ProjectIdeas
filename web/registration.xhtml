@@ -10,29 +10,29 @@
         <h3>Registration page.</h3>
         <h:form>
             <h:panelGrid columns="3">
-                <h:outputLabel value="Organization name:" for="oName"/>
+                <h:outputLabel value="Organization name: *" for="oName"/>
                 <h:inputText id="oName" value="#{organizationBean.organization.organizationName}"
                              required="true" label="Organization Name" />
                 <h:message for="oName"/>
 
-                <h:outputLabel value="Password:" for="password"/>
+                <h:outputLabel value="Password: *" for="password"/>
                 <h:inputSecret id="password" value="#{organizationBean.organization.password}"
                                required="true" label="Password" binding="#{password}">
-                    
+
                     <f:validateLength minimum="4" />
                 </h:inputSecret>
                 <h:message for="password"/>
 
-                <h:outputLabel value="Repeat Password:" for="rPassword"/>
+                <h:outputLabel value="Repeat Password: *" for="rPassword"/>
                 <h:inputSecret id="rPassword" value="#{organizationBean.repeatPassword}"
                                required="true" label="Repeat Password" 
                                validator="#{organizationBean.checkPasswordsEquality}">
-                    
+
                     <f:attribute name="password" value="#{password}" />
-                    
+
                 </h:inputSecret>
                 <h:message id="rPasswordMessage" for="rPassword"/>
-                
+
                 <h:outputLabel value="Address:" for="address"/>
                 <h:inputText id="address" value="#{organizationBean.organization.address}"
                              label="Address"/>
@@ -50,7 +50,7 @@
                     <f:ajax  event="blur" render="numberMessage" />
                 </h:inputText>
                 <h:message id="numberMessage" for="number"/>                
-                
+
                 <h:outputLabel value="Email:" for="email"/>
                 <h:inputText id="email" value="#{organizationBean.organization.email}"
                              label="Email">
@@ -58,10 +58,11 @@
                     <f:ajax  event="blur" render="emailMessage" />
                 </h:inputText>
                 <h:message id="emailMessage" for="email"/>
-                
+
                 <h:panelGroup/>
                 <h:commandButton id="register" value="Register" action="#{organizationBean.register}"/>
 
+                
             </h:panelGrid>
         </h:form>
     </h:body>

@@ -4,11 +4,14 @@
  */
 package roman.cwk.bus;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import roman.cwk.entity.Organization;
+import roman.cwk.entity.Project;
 import roman.cwk.entity.UserGroup;
 import roman.cwk.sessionbeans.OrganizationFacade;
+import roman.cwk.sessionbeans.ProjectFacade;
 import roman.cwk.sessionbeans.UserGroupFacade;
 
 /**
@@ -24,7 +27,9 @@ public class OrganizationService {
     private OrganizationFacade ejbOrgFacade;
     @EJB
     private UserGroupFacade ejbGroupOrgFacade;
-    private String organizationCurrentName;
+    @EJB
+    private ProjectFacade ejbProjectFacade;
+    private String organizationCurrentName ="";
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
@@ -52,16 +57,18 @@ public class OrganizationService {
         if (organization == null) {
             throw new BusinessException("Organization not found");
         }
+        organizationCurrentName = organizationName;
         return organization;
     }
 
-    public Organization edit(Organization organization) throws BusinessException {
-         //Checks if Organization with such name already exists, 
-        // only if the name is not the same as before edit
-        if(!organizationCurrentName.equals(organization.getOrganizationName()) &&
-                ejbOrgFacade.OrganizationExist(organization.getOrganizationName())){
-            throw new BusinessException("Organization with name " +
-                    organization.getOrganizationName() + " already exist");
+    public Organization edit(Organization organization) {
+        ejbOrgFacade.edit(organization);
+        return organization;
+    }
+    public Organization changePassword(String currentPassword, Organization organization) throws BusinessException{
+        String actualCurrentPassword = ejbOrgFacade.find(organization.getOrganizationName()).getPassword();
+        if(!actualCurrentPassword.equals(currentPassword)){
+            throw new BusinessException("Invalid current password");
         }
         ejbOrgFacade.edit(organization);
         return organization;
