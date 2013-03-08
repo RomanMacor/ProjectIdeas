@@ -18,6 +18,7 @@
                 <h:outputLabel value="Password:" for="password"/>
                 <h:inputSecret id="password" value="#{organizationBean.organization.password}"
                                required="true" label="Password" binding="#{password}">
+                    
                     <f:validateLength minimum="4" />
                 </h:inputSecret>
                 <h:message for="password"/>
@@ -28,8 +29,9 @@
                                validator="#{organizationBean.checkPasswordsEquality}">
                     
                     <f:attribute name="password" value="#{password}" />
+                    
                 </h:inputSecret>
-                <h:message for="rPassword"/>
+                <h:message id="rPasswordMessage" for="rPassword"/>
                 
                 <h:outputLabel value="Address:" for="address"/>
                 <h:inputText id="address" value="#{organizationBean.organization.address}"
@@ -45,15 +47,17 @@
                 <h:inputText id="number" value="#{organizationBean.organization.phoneNumber}"
                              label="Phone number">
                     <f:validateRegex pattern="[0-9 \-+().]{7,20}" />
+                    <f:ajax  event="blur" render="numberMessage" />
                 </h:inputText>
-                <h:message for="number"/>                
+                <h:message id="numberMessage" for="number"/>                
                 
                 <h:outputLabel value="Email:" for="email"/>
                 <h:inputText id="email" value="#{organizationBean.organization.email}"
                              label="Email">
                     <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    <f:ajax  event="blur" render="emailMessage" />
                 </h:inputText>
-                <h:message for="email"/>
+                <h:message id="emailMessage" for="email"/>
                 
                 <h:panelGroup/>
                 <h:commandButton id="register" value="Register" action="#{organizationBean.register}"/>

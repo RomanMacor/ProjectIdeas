@@ -10,11 +10,11 @@
         <h3>Edit organization detail.</h3>
         <h:form>
             <h:panelGrid columns="3">
-                                <h:outputLabel value="Organization name:" for="oName"/>
+                <h:outputLabel value="Organization name:" for="oName"/>
                 <h:inputText id="oName" value="#{organizationBean.organization.organizationName}"
                              required="true" label="Organization Name"/>
                 <h:message for="oName"/>
-                
+
                 <h:outputLabel value="Address:" for="address"/>
                 <h:inputText id="address" value="#{organizationBean.organization.address}"
                              label="Address"/>
@@ -29,17 +29,18 @@
                 <h:inputText id="number" value="#{organizationBean.organization.phoneNumber}"
                              label="Phone number">
                     <f:validateRegex pattern="[0-9 \-+().]{7,20}" />
+                    <f:ajax  event="blur" render="numberMessage" />
                 </h:inputText>
-                <h:message for="number"/>                
-                
+                <h:message id="numberMessage" for="number"/>                
+
                 <h:outputLabel value="Email:" for="email"/>
                 <h:inputText id="email" value="#{organizationBean.organization.email}"
                              label="Email">
                     <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    <f:ajax  event="blur" render="emailMessage" />
                 </h:inputText>
-                <h:message for="email"/>
+                <h:message id="emailMessage" for="email"/>
 
-                
                 <h:commandButton id="register" value="Save" action="#{organizationBean.edit}"/>
                 <h:commandButton id="cancel" value="Cancel" action="/project/index"/>
 
