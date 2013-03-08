@@ -8,16 +8,26 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:dataTable value="#{projectBean.allProjects}" var="project">
+            <h:panelGrid columns="3">
+                <h:outputLabel for="searchString" value="Search by title: "/>
+                <h:inputText label="Search String" value="#{projectBean.searchString}"
+                             autocomplete="off" >
+                    <f:ajax  render="listOfProjects" event="keyup"/>
+                </h:inputText>
+
+                <h:commandButton action="#{projectBean.searchByName()}" value="Search"/>
+            </h:panelGrid>
+
+            <h:dataTable id="listOfProjects" value="#{projectBean.projectsByName}" var="project">
                 <f:facet name="header">Project Ideas</f:facet>
 
                 <h:column>
                     <h:panelGrid columns="2" >
-                    <h:commandLink action="#{projectBean.prepareDetail(project.id)}" 
-                                   value="#{project.title}" />
-                    <h:panelGroup />
-                    <h:outputText value="#{project.organization.contactName}, "/>
-                    <h:outputText value="#{project.organization.organizationName}"/>
+                        <h:commandLink action="#{projectBean.prepareDetail(project.id)}" 
+                                       value="#{project.title}" />
+                        <h:panelGroup />
+                        <h:outputText value="#{project.organization.contactName}, "/>
+                        <h:outputText value="#{project.organization.organizationName}"/>
                     </h:panelGrid>
                 </h:column>
             </h:dataTable>

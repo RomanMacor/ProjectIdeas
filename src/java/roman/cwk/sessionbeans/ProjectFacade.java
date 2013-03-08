@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import roman.cwk.entity.Project;
 
 /**
@@ -34,15 +35,20 @@ public class ProjectFacade extends AbstractFacade<Project> {
     }
 
     public List<Project> findProjectsForUser(String organizationName) {
-        return em.createQuery("SELECT c FROM Project c WHERE c.organization.organizationName = :name")
-                .setParameter("name", organizationName)
-                .getResultList(); 
+        Query query = em.createQuery("SELECT c FROM Project c WHERE c.organization.organizationName = :name");
+        query.setParameter("name", organizationName);
+        return query.getResultList();
     }
 
     public boolean projectExist(String name) {
-        return !(em.createQuery("SELECT c FROM Project c WHERE c.title = :name")
-                .setParameter("name", name)
-                .getResultList()
-                .isEmpty());
+        Query query = em.createQuery("SELECT c FROM Project c WHERE c.title = :name");
+        query.setParameter("name", name);
+        return !(query.getResultList().isEmpty());
+        
+    }
+    public List<Project> searchByName(String searchString) {
+       Query query = em.createQuery("SELECT c FROM Project c WHERE upper(c.title) like :searchString");
+       query.setParameter("searchString", "%" + searchString.toUpperCase() + "%");
+       return query.getResultList();
     }
 }

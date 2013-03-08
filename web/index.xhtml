@@ -13,7 +13,7 @@
             <h:link outcome="#{organizationBean.logout()}" value="Logout" rendered="#{organizationBean.loggedIn}"/>
             <h:link outcome="/project/index" value="Login/Register" rendered="#{!organizationBean.loggedIn}"/>
             <h:link outcome="/project/index" value="Go to profile" rendered="#{organizationBean.loggedIn}"/>
-            <h:link outcome="/list_projects" value="List all projects" />
+            <h:link outcome="#{projectBean.prepareList()}" value="List all projects" />
         </h:panelGrid>
     </h:body>
 </html>

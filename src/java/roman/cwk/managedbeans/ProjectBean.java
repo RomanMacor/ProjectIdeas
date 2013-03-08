@@ -11,13 +11,9 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import roman.cwk.bus.BusinessException;
 import roman.cwk.bus.ProjectService;
-import roman.cwk.entity.Organization;
 import roman.cwk.entity.Project;
-import roman.cwk.sessionbeans.OrganizationFacade;
-import roman.cwk.sessionbeans.ProjectFacade;
 
 /**
  *
@@ -29,7 +25,7 @@ import roman.cwk.sessionbeans.ProjectFacade;
 public class ProjectBean extends BaseBean{
 
     private Project project;
-    
+    private String searchString ="";
     @EJB
     private ProjectService ejbProjectService;
 //    @ManagedProperty(value="#{registrationBean}")
@@ -52,6 +48,14 @@ public class ProjectBean extends BaseBean{
         this.project = project;
     }
 
+    public String getSearchString() {
+        return searchString;
+    }
+
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
+    }
+    
     
 
     public String create() {
@@ -66,9 +70,7 @@ public class ProjectBean extends BaseBean{
         return "/project/list";
     }
 
-    public List<Project> getAllProjects() {
-        return ejbProjectService.getAllProjects();
-    }
+    
 
     public List getProjectsForLogedUser() {
         String organizationName = this.getLogedUsername();
@@ -120,7 +122,7 @@ public class ProjectBean extends BaseBean{
     }
     public String edit(){
         try {
-            ejbProjectService.edit(project);
+            project = ejbProjectService.edit(project);
         } catch (BusinessException ex) {
             Logger.getLogger(ProjectBean.class.getName()).log(Level.SEVERE, null, ex);
             addErrorMessage(ex.getMessage());
@@ -128,4 +130,15 @@ public class ProjectBean extends BaseBean{
         }
         return "/project/list";
     }
+    public String prepareList(){
+        searchString = "";
+        return "/list_projects";
+    }
+    public List<Project> getProjectsByName() {
+        return ejbProjectService.getProjectsByName(searchString);
+    }
+    public String searchByName() {
+        return "/list_projects";
+    }
+    
 }

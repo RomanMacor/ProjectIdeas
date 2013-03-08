@@ -91,7 +91,7 @@ public class OrganizationBean extends BaseBean {
     
     public String edit() {
         try {
-            ejbOrganizationService.edit(organization);
+            organization = ejbOrganizationService.edit(organization);
         } catch (BusinessException ex) {
             Logger.getLogger(OrganizationBean.class.getName()).log(Level.SEVERE, null, ex);
             addErrorMessage(ex.getMessage());

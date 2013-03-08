@@ -41,12 +41,12 @@ public class ProjectService {
         return project;
     }
 
-    public List<Project> getAllProjects() {
-        return ejbProjectFacade.findAll();
+    public List<Project> getProjectsByName(String searchString) {
+        return ejbProjectFacade.searchByName(searchString);
     }
 
     public List<Project> getProjectsForUser(String organizationName) throws BusinessException {
-        if (organizationName == null || organizationName == "") {
+        if (organizationName == null || organizationName.equals("")) {
             throw new BusinessException("No user loged in");
         }
         return ejbProjectFacade.findProjectsForUser(organizationName);

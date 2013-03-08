@@ -7,6 +7,7 @@ package roman.cwk.sessionbeans;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import roman.cwk.entity.Organization;
 
 /**
@@ -27,10 +28,8 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         super(Organization.class);
     }
     public boolean OrganizationExist(String name) {
-        return !(em.createQuery("SELECT c FROM Project c WHERE c.title = :name")
-                .setParameter("name", name)
-                .getResultList()
-                .isEmpty());
+        Query query = em.createQuery("SELECT c FROM Project c WHERE c.title = :name");
+        query.setParameter("name", name);
+        return !(query.getResultList().isEmpty());
     }
-    
 }

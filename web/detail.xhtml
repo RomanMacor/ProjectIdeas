@@ -3,10 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Project details</title>
     </h:head>
     <h:body>
-        <h:link outcome="list_projects" value="List all projects" />
+        <h:link outcome="#{projectBean.prepareList()}" value="List all projects" />
         <br />
         <h3>Detail page about the item.</h3>
         <h:panelGrid columns="2">
