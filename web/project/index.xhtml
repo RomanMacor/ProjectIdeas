@@ -7,10 +7,10 @@
     </h:head>
     <h:body>
         <h:panelGrid columns="1">
-            <h:outputText value="Welcome, #{registrationBean.logedUsername}" />
+            <h:outputText value="Welcome, #{organizationBean.logedUsername}" />
             <h:link outcome="#{projectBean.prepareCreate()}" value="Create a new project" />
             <h:link outcome="list" value="List my projects" />
-            <h:link outcome="#{registrationBean.prepareEditOrganization()}" value="Edit my organization details" />
+            <h:link outcome="#{organizationBean.prepareEditOrganization()}" value="Edit my organization details" />
         </h:panelGrid>
     </h:body>
 </html>

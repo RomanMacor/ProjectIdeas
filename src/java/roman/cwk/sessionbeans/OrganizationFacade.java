@@ -26,5 +26,11 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
     public OrganizationFacade() {
         super(Organization.class);
     }
+    public boolean OrganizationExist(String name) {
+        return !(em.createQuery("SELECT c FROM Project c WHERE c.title = :name")
+                .setParameter("name", name)
+                .getResultList()
+                .isEmpty());
+    }
     
 }

@@ -9,13 +9,15 @@
         Username or password does not match. Please try again.
         <h:link outcome="/registration" value="If you don't have an account please click here to register."/>        
         <form method="post" action="j_security_check">
-            <h:panelGrid columns="2">
-                <h:outputLabel for="j_username" value="User name:"/>
-                <h:inputText id="j_username" />
-
+            <h:panelGrid columns="3">
+               <h:outputLabel for="j_username" value="User name:"/>
+                <h:inputText id="j_username" label="Username" required="true"/>
+                <h:message for="j_username" />
+                
                 <h:outputLabel for="j_password" value="Password:"/>
-                <h:inputSecret id="j_password" />
-
+                <h:inputSecret id="j_password" label="Password" required="true"/>
+                <h:message for="j_password" />
+                
                 <h:commandButton value="Login" />
             </h:panelGrid>
         </form>

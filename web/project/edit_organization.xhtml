@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Edit organization detail</title>
     </h:head>
@@ -9,28 +10,37 @@
         <h3>Edit organization detail.</h3>
         <h:form>
             <h:panelGrid columns="3">
-                <h:outputLabel value="Organization name:" for="oName"/>
-                <h:inputText id="oName" value="#{registrationBean.organization.organizationName}"
-                             required="true" disabled="true"/>
+                                <h:outputLabel value="Organization name:" for="oName"/>
+                <h:inputText id="oName" value="#{organizationBean.organization.organizationName}"
+                             required="true" label="Organization Name"/>
                 <h:message for="oName"/>
-
+                
                 <h:outputLabel value="Address:" for="address"/>
-                <h:inputText id="address" value="#{registrationBean.organization.address}"/>
+                <h:inputText id="address" value="#{organizationBean.organization.address}"
+                             label="Address"/>
                 <h:message for="address"/>
 
                 <h:outputLabel value="Contact name:" for="cName"/>
-                <h:inputText id="cName" value="#{registrationBean.organization.contactName}"/>
+                <h:inputText id="cName" value="#{organizationBean.organization.contactName}"
+                             label="Contact name"/>
                 <h:message for="cName"/>
 
                 <h:outputLabel value="Phone number:" for="number"/>
-                <h:inputText id="number" value="#{registrationBean.organization.phoneNumber}"/>
+                <h:inputText id="number" value="#{organizationBean.organization.phoneNumber}"
+                             label="Phone number">
+                    <f:validateRegex pattern="[0-9 \-+().]{7,20}" />
+                </h:inputText>
                 <h:message for="number"/>                
                 
                 <h:outputLabel value="Email:" for="email"/>
-                <h:inputText id="email" value="#{registrationBean.organization.email}"/>
+                <h:inputText id="email" value="#{organizationBean.organization.email}"
+                             label="Email">
+                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                </h:inputText>
                 <h:message for="email"/>
+
                 
-                <h:commandButton id="register" value="Edit details" action="#{registrationBean.edit}"/>
+                <h:commandButton id="register" value="Save" action="#{organizationBean.edit}"/>
                 <h:commandButton id="cancel" value="Cancel" action="/project/index"/>
 
             </h:panelGrid>

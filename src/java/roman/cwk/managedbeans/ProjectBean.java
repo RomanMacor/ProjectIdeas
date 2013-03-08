@@ -4,13 +4,16 @@
  */
 package roman.cwk.managedbeans;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import roman.cwk.bus.BusinessException;
+import roman.cwk.bus.ProjectService;
 import roman.cwk.entity.Organization;
 import roman.cwk.entity.Project;
 import roman.cwk.sessionbeans.OrganizationFacade;
@@ -23,13 +26,12 @@ import roman.cwk.sessionbeans.ProjectFacade;
 @ManagedBean
 //@RequestScoped
 @SessionScoped
-public class ProjectBean {
+public class ProjectBean extends BaseBean{
 
     private Project project;
+    
     @EJB
-    private ProjectFacade ejbProjectFacade;
-    @EJB
-    private OrganizationFacade ejbOrganizationFacade;
+    private ProjectService ejbProjectService;
 //    @ManagedProperty(value="#{registrationBean}")
 //    private RegistrationBean registration;
 
@@ -50,30 +52,44 @@ public class ProjectBean {
         this.project = project;
     }
 
-    public String getLogedUsername() {
-        String userName = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-        return userName;
-    }
+    
 
     public String create() {
         String organizationName = this.getLogedUsername();
-        Organization organization = ejbOrganizationFacade.find(organizationName);
-        project.setOrganization(organization);
-        ejbProjectFacade.create(project);
+        try {
+            this.project = ejbProjectService.create(project, organizationName);
+        } catch (BusinessException ex) {
+            Logger.getLogger(ProjectBean.class.getName()).log(Level.SEVERE, null, ex);
+            addErrorMessage(ex.getMessage());
+            return "";
+        }
         return "/project/list";
     }
 
     public List<Project> getAllProjects() {
-        return ejbProjectFacade.findAll();
+        return ejbProjectService.getAllProjects();
     }
 
-    public List<Project> getProjectsForLogedUser() {
+    public List getProjectsForLogedUser() {
         String organizationName = this.getLogedUsername();
-        return ejbProjectFacade.findProjectsForLogedinUser(organizationName);
+        List projects = new ArrayList();
+        try {
+            projects = ejbProjectService.getProjectsForUser(organizationName);
+        } catch (BusinessException ex) {
+            Logger.getLogger(ProjectBean.class.getName()).log(Level.SEVERE, null, ex);
+            addErrorMessage(ex.getMessage());
+        }
+        return projects;
     }
 
     public String prepareDetail(Long id) {
-        project = ejbProjectFacade.find(id);
+        try {
+            project = ejbProjectService.prepareDetail(id);
+        } catch (BusinessException ex) {
+            Logger.getLogger(ProjectBean.class.getName()).log(Level.SEVERE, null, ex);
+            addErrorMessage(ex.getMessage());
+            return "";
+        }
         return "detail";
     }
 
@@ -82,17 +98,34 @@ public class ProjectBean {
         return "/project/create";
     }
 
-    public String detele(Project project) {
-        ejbProjectFacade.remove(project);
+    public String detele(Long projectId) {
+        try {
+            ejbProjectService.detele(projectId);
+        } catch (BusinessException ex) {
+            Logger.getLogger(ProjectBean.class.getName()).log(Level.SEVERE, null, ex);
+            addErrorMessage(ex.getMessage());
+        }
         return "/project/list";
     }
 
-    public String prepareEdit(Project project) {
-        this.project = project;
+    public String prepareEdit(Long projectId) {
+        try {
+            this.project = ejbProjectService.prepareEdit(projectId);
+        } catch (BusinessException ex) {
+            Logger.getLogger(ProjectBean.class.getName()).log(Level.SEVERE, null, ex);
+            addErrorMessage(ex.getMessage());
+            return "";
+        }
         return "/project/edit";
     }
     public String edit(){
-        ejbProjectFacade.edit(project);
+        try {
+            ejbProjectService.edit(project);
+        } catch (BusinessException ex) {
+            Logger.getLogger(ProjectBean.class.getName()).log(Level.SEVERE, null, ex);
+            addErrorMessage(ex.getMessage());
+            return "";
+        }
         return "/project/list";
     }
 }

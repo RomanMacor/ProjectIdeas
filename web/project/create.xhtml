@@ -13,23 +13,27 @@
             <h:panelGrid columns="3">
                 <h:outputLabel value="Project title:" for="pTitle"/>
                 <h:inputText id="pTitle" value="#{projectBean.project.title}"
-                             required="true"/>
+                             label="Project Title" required="true"/>
                 <h:message for="pTitle"/>
 
                 <h:outputLabel value="Project objective:" for="pObjective"/>
-                <h:inputText id="pObjective" value="#{projectBean.project.objective}"/>
+                <h:inputText id="pObjective" value="#{projectBean.project.objective}"
+                             label="Project Objective"/>
                 <h:message for="pObjective"/>
 
                 <h:outputLabel value="Academic questions:" for="aQuestions"/>
-                <h:inputText id="aQuestions" value="#{projectBean.project.academicQuestions}"/>
+                <h:inputText id="aQuestions" value="#{projectBean.project.academicQuestions}"
+                             label="Academic Questions"/>
                 <h:message for="aQuestions"/>
 
                 <h:outputLabel value="Deliverables:" for="deliverables"/>
-                <h:inputText id="deliverables" value="#{projectBean.project.deliverables}"/>
+                <h:inputText id="deliverables" value="#{projectBean.project.deliverables}"
+                             label="Deliverables"/>
                 <h:message for="deliverables"/>
 
                 <h:outputLabel value="Difficulty" for="difficulty"/>
-                <h:selectOneMenu id="difficulty" value="#{projectBean.project.difficulty}">
+                <h:selectOneMenu id="difficulty" value="#{projectBean.project.difficulty}"
+                                 label="Difficulty">
                     <f:selectItem itemLabel="" itemValue=""/>
                     <f:selectItem itemLabel="Easy" itemValue="easy"/>
                     <f:selectItem itemLabel="Average" itemValue="average" />
@@ -38,7 +42,8 @@
                 <h:message for="difficulty"/>
                 
                 <h:outputLabel value="Created by:" for="company"/>
-                <h:inputText id="company" readonly="true" value="#{registrationBean.logedUsername}"/>
+                <h:inputText id="company" readonly="true" value="#{organizationBean.logedUsername}"
+                             label="Company"/>
                 <h:message for="company"/>
                 
                 <h:panelGroup/>

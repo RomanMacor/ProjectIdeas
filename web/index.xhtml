@@ -5,13 +5,14 @@
     <h:head>
         <title>Index page</title>
     </h:head>
+    
     <h:body>
         <h1>Project ideas web application</h1>
         <!--TODO: Put this into template file.-->
         <h:panelGrid columns="1">
-            <h:link outcome="#{registrationBean.logout()}" value="Logout" rendered="#{registrationBean.loggedIn}"/>
-            <h:link outcome="/project/index" value="Login/Register" rendered="#{!registrationBean.loggedIn}"/>
-            <h:link outcome="/project/index" value="Go to profile" rendered="#{registrationBean.loggedIn}"/>
+            <h:link outcome="#{organizationBean.logout()}" value="Logout" rendered="#{organizationBean.loggedIn}"/>
+            <h:link outcome="/project/index" value="Login/Register" rendered="#{!organizationBean.loggedIn}"/>
+            <h:link outcome="/project/index" value="Go to profile" rendered="#{organizationBean.loggedIn}"/>
             <h:link outcome="/list_projects" value="List all projects" />
         </h:panelGrid>
     </h:body>

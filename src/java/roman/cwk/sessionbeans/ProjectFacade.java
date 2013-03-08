@@ -33,20 +33,16 @@ public class ProjectFacade extends AbstractFacade<Project> {
         em.find(Project.class, 5);
     }
 
-    public List<Project> findProjectsForLogedinUser(String organizationName) {
-//        return em.createQuery("SELECT c FROM PROJECT c WHERE c.ORGANIZATION_ORGANIZATIONNAME = :orgName")
-//                .setParameter("orgName", organizationName)
-//                .getResultList();
-                return em.createQuery("SELECT c FROM Project c WHERE c.organization.organizationName = :name")
-                        .setParameter("name", organizationName)
-                        .getResultList();
+    public List<Project> findProjectsForUser(String organizationName) {
+        return em.createQuery("SELECT c FROM Project c WHERE c.organization.organizationName = :name")
+                .setParameter("name", organizationName)
+                .getResultList(); 
     }
 
-    public List findWithName(String name) {
-        return em.createQuery(
-                "SELECT c FROM Customer c WHERE c.name LIKE :custName")
-                .setParameter("custName", name)
-                .setMaxResults(10)
-                .getResultList();
+    public boolean projectExist(String name) {
+        return !(em.createQuery("SELECT c FROM Project c WHERE c.title = :name")
+                .setParameter("name", name)
+                .getResultList()
+                .isEmpty());
     }
 }
