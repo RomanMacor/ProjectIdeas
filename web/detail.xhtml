@@ -28,6 +28,12 @@
                 <h:outputLabel value="Created by:" for="company"/>
                 <h:outputText id="company" value="#{projectBean.project.organization.organizationName}"/>
                 
+                <h:outputLabel value="Contact Name:" for="company"/>
+                <h:outputText id="contactName" value="#{projectBean.project.organization.contactName}"/>
+                
+                <h:outputLabel value="Email:" for="company"/>
+                <h:outputText id="email" value="#{projectBean.project.organization.email}"/>
+                
                 <h:panelGroup/>
                 
             </h:panelGrid>
