@@ -2,68 +2,76 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Registration page</title>
     </h:head>
     <h:body>
-        <h3>Registration page.</h3>
-        <h:form>
-            <h:panelGrid columns="3">
-                <h:outputLabel value="Organization name: *" for="oName"/>
-                <h:inputText id="oName" value="#{organizationBean.organization.organizationName}"
-                             required="true" label="Organization Name" />
-                <h:message for="oName"/>
+        <ui:composition template="./template.xhtml">
 
-                <h:outputLabel value="Password: *" for="password"/>
-                <h:inputSecret id="password" value="#{organizationBean.organization.password}"
-                               required="true" label="Password" binding="#{password}">
+            <ui:define name="content">
+                <h2>Registration page</h2>
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="Organization name: *" for="oName"/>
+                        <h:inputText id="oName" value="#{organizationBean.organization.organizationName}"
+                                     required="true" label="Organization Name" />
+                        <h:message for="oName"/>
 
-                    <f:validateLength minimum="4" />
-                </h:inputSecret>
-                <h:message for="password"/>
+                        <h:outputLabel value="Password: *" for="password"/>
+                        <h:inputSecret id="password" value="#{organizationBean.organization.password}"
+                                       required="true" label="Password" binding="#{password}">
 
-                <h:outputLabel value="Repeat Password: *" for="rPassword"/>
-                <h:inputSecret id="rPassword" value="#{organizationBean.repeatPassword}"
-                               required="true" label="Repeat Password" 
-                               validator="#{organizationBean.checkPasswordsEquality}">
+                            <f:validateLength minimum="4" />
+                        </h:inputSecret>
+                        <h:message for="password"/>
 
-                    <f:attribute name="password" value="#{password}" />
+                        <h:outputLabel value="Repeat Password: *" for="rPassword"/>
+                        <h:inputSecret id="rPassword" value="#{organizationBean.repeatPassword}"
+                                       required="true" label="Repeat Password" 
+                                       validator="#{organizationBean.checkPasswordsEquality}">
 
-                </h:inputSecret>
-                <h:message id="rPasswordMessage" for="rPassword"/>
+                            <f:attribute name="password" value="#{password}" />
 
-                <h:outputLabel value="Address:" for="address"/>
-                <h:inputText id="address" value="#{organizationBean.organization.address}"
-                             label="Address"/>
-                <h:message for="address"/>
+                        </h:inputSecret>
+                        <h:message id="rPasswordMessage" for="rPassword"/>
 
-                <h:outputLabel value="Contact name:" for="cName"/>
-                <h:inputText id="cName" value="#{organizationBean.organization.contactName}"
-                             label="Contact name"/>
-                <h:message for="cName"/>
+                        <h:outputLabel value="Address:" for="address"/>
+                        <h:inputText id="address" value="#{organizationBean.organization.address}"
+                                     label="Address"/>
+                        <h:message for="address"/>
 
-                <h:outputLabel value="Phone number:" for="number"/>
-                <h:inputText id="number" value="#{organizationBean.organization.phoneNumber}"
-                             label="Phone number">
-                    <f:validateRegex pattern="[0-9 \-+().]{7,20}" />
-                    <f:ajax  event="blur" render="numberMessage" />
-                </h:inputText>
-                <h:message id="numberMessage" for="number"/>                
+                        <h:outputLabel value="Contact name:" for="cName"/>
+                        <h:inputText id="cName" value="#{organizationBean.organization.contactName}"
+                                     label="Contact name"/>
+                        <h:message for="cName"/>
 
-                <h:outputLabel value="Email:" for="email"/>
-                <h:inputText id="email" value="#{organizationBean.organization.email}"
-                             label="Email">
-                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                    <f:ajax  event="blur" render="emailMessage" />
-                </h:inputText>
-                <h:message id="emailMessage" for="email"/>
+                        <h:outputLabel value="Phone number:" for="number"/>
+                        <h:inputText id="number" value="#{organizationBean.organization.phoneNumber}"
+                                     label="Phone number">
+                            <f:validateRegex pattern="[0-9 \-+().]{7,20}" />
+                            <f:ajax  event="blur" render="numberMessage" />
+                        </h:inputText>
+                        <h:message id="numberMessage" for="number"/>                
 
-                <h:panelGroup/>
-                <h:commandButton id="register" value="Register" action="#{organizationBean.register}"/>
+                        <h:outputLabel value="Email:" for="email"/>
+                        <h:inputText id="email" value="#{organizationBean.organization.email}"
+                                     label="Email">
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                            <f:ajax  event="blur" render="emailMessage" />
+                        </h:inputText>
+                        <h:message id="emailMessage" for="email"/>
 
-                
-            </h:panelGrid>
-        </h:form>
+                        <h:panelGroup/>
+                        <h:commandButton id="register" value="Register" action="#{organizationBean.register}"/>
+
+
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
     </h:body>
 </html>

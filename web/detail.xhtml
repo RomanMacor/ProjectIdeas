@@ -1,42 +1,47 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Project details</title>
     </h:head>
     <h:body>
-        <h:link outcome="#{projectBean.prepareList()}" value="List all projects" />
-        <br />
-        <h3>Detail page about the item.</h3>
-        <h:panelGrid columns="2">
-                <h:outputLabel value="Project title:" for="pTitle"/>
-                <h:outputText id="pTitle" value="#{projectBean.project.title}"/>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="content">
+                <h2>Detail page about the item.</h2>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Project title:" for="pTitle"/>
+                    <h:outputText id="pTitle" value="#{projectBean.project.title}"/>
 
-                <h:outputLabel value="Project objective:" for="pObjective"/>
-                <h:outputText id="pObjective" value="#{projectBean.project.objective}"/>
+                    <h:outputLabel value="Project objective:" for="pObjective"/>
+                    <h:outputText id="pObjective" value="#{projectBean.project.objective}"/>
 
-                <h:outputLabel value="Academic questions:" for="aQuestions"/>
-                <h:outputText id="aQuestions" value="#{projectBean.project.academicQuestions}"/>
+                    <h:outputLabel value="Academic questions:" for="aQuestions"/>
+                    <h:outputText id="aQuestions" value="#{projectBean.project.academicQuestions}"/>
 
-                <h:outputLabel value="Deliverables:" for="deliverables"/>
-                <h:outputText id="deliverables" value="#{projectBean.project.deliverables}"/>
+                    <h:outputLabel value="Deliverables:" for="deliverables"/>
+                    <h:outputText id="deliverables" value="#{projectBean.project.deliverables}"/>
 
-                <h:outputLabel value="Difficulty" for="difficulty"/>
-                <h:outputText id="difficulty" value="#{projectBean.project.difficulty}" />
-                    
-                <h:outputLabel value="Created by:" for="company"/>
-                <h:outputText id="company" value="#{projectBean.project.organization.organizationName}"/>
-                
-                <h:outputLabel value="Contact Name:" for="company"/>
-                <h:outputText id="contactName" value="#{projectBean.project.organization.contactName}"/>
-                
-                <h:outputLabel value="Email:" for="company"/>
-                <h:outputText id="email" value="#{projectBean.project.organization.email}"/>
-                
-                <h:panelGroup/>
-                
-            </h:panelGrid>
+                    <h:outputLabel value="Difficulty" for="difficulty"/>
+                    <h:outputText id="difficulty" value="#{projectBean.project.difficulty}" />
+
+                    <h:outputLabel value="Created by:" for="company"/>
+                    <h:outputText id="company" value="#{projectBean.project.organization.organizationName}"/>
+
+                    <h:outputLabel value="Contact Name:" for="company"/>
+                    <h:outputText id="contactName" value="#{projectBean.project.organization.contactName}"/>
+
+                    <h:outputLabel value="Email:" for="company"/>
+                    <h:outputText id="email" value="#{projectBean.project.organization.email}"/>
+
+                    <h:panelGroup/>
+
+                </h:panelGrid>
+            </ui:define>
+
+        </ui:composition>   
+
     </h:body>
 </html>
 

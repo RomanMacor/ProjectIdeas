@@ -1,18 +1,59 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Index for logged in users</title>
     </h:head>
     <h:body>
-        <h:panelGrid columns="1">
-            <h:outputText value="Welcome, #{organizationBean.logedUsername}" />
-            <h:link outcome="#{projectBean.prepareCreate()}" value="Create a new project" />
-            <h:link outcome="list" value="List my projects" />
-            <h:link outcome="#{organizationBean.prepareEditOrganization()}" value="Edit my organization details" />
-            <h:link outcome="change_password" value="Change password" />
-        </h:panelGrid>
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable value="#{projectBean.projectsForLogedUser}" var="project"  cellspacing="10">
+                        <!--                                <f:facet name="header" >
+                                                            <h:column><f:facet name="header" >Title</f:facet></h:column>
+                                                            <h:column> <h:outputText value="Title" /> </h:column>
+                                                            <h:column> <h:outputText value="Objective" /> </h:column>
+                                                            <h:column> <h:outputText value="Academic questions" /> </h:column>
+                                                            <h:column> <h:outputText value="Deliverables" /> </h:column>
+                                                            <h:column> <h:outputText value="Difficulty" /> </h:column>
+                                                        </f:facet>-->
+                        <h:column>
+                            <f:facet name="header" >Title</f:facet>
+                                #{project.title}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header" >Objective</f:facet>
+                                #{project.objective}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header" >Academic questions</f:facet>
+                                #{project.academicQuestions}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header" >Deliverables</f:facet>
+                                #{project.deliverables}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header" >Difficulty</f:facet>
+                                #{project.difficulty}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header" >Title</f:facet>
+                                #{project.objective}
+                        </h:column>
+
+                        <h:column> <h:commandButton action="#{projectBean.prepareEdit(project.id)}" value="Edit"/> </h:column>
+                        <h:column> <h:commandButton action="#{projectBean.detele(project.id)}" value="Delete"/> </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
     </h:body>
 </html>
 

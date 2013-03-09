@@ -2,55 +2,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Create new project idea.</title>
     </h:head>
     <h:body>
         <h:link outcome="list" value="List all your project ideas" />
-        <h3>Create new project idea.</h3>
-        <h:form>
-            <h:panelGrid columns="3">
-                <h:outputLabel value="Project title: *" for="pTitle"/>
-                <h:inputText id="pTitle" value="#{projectBean.project.title}"
-                             label="Project Title" required="true"/>
-                <h:message for="pTitle"/>
+        <ui:composition template="./template.xhtml">
 
-                <h:outputLabel value="Project objective:" for="pObjective"/>
-                <h:inputText id="pObjective" value="#{projectBean.project.objective}"
-                             label="Project Objective"/>
-                <h:message for="pObjective"/>
+            <ui:define name="content">
+                <h3>Create new project idea.</h3>
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="Project title: *" for="pTitle"/>
+                        <h:inputText id="pTitle" value="#{projectBean.project.title}"
+                                     label="Project Title" required="true"/>
+                        <h:message for="pTitle"/>
 
-                <h:outputLabel value="Academic questions:" for="aQuestions"/>
-                <h:inputText id="aQuestions" value="#{projectBean.project.academicQuestions}"
-                             label="Academic Questions"/>
-                <h:message for="aQuestions"/>
+                        <h:outputLabel value="Project objective:" for="pObjective"/>
+                        <h:inputText id="pObjective" value="#{projectBean.project.objective}"
+                                     label="Project Objective"/>
+                        <h:message for="pObjective"/>
 
-                <h:outputLabel value="Deliverables:" for="deliverables"/>
-                <h:inputText id="deliverables" value="#{projectBean.project.deliverables}"
-                             label="Deliverables"/>
-                <h:message for="deliverables"/>
+                        <h:outputLabel value="Academic questions:" for="aQuestions"/>
+                        <h:inputText id="aQuestions" value="#{projectBean.project.academicQuestions}"
+                                     label="Academic Questions"/>
+                        <h:message for="aQuestions"/>
 
-                <h:outputLabel value="Difficulty" for="difficulty"/>
-                <h:selectOneMenu id="difficulty" value="#{projectBean.project.difficulty}"
-                                 label="Difficulty">
-                    <f:selectItem itemLabel="" itemValue=""/>
-                    <f:selectItem itemLabel="Easy" itemValue="easy"/>
-                    <f:selectItem itemLabel="Average" itemValue="average" />
-                    <f:selectItem itemLabel="Difficult" itemValue="difficult"/>
-                </h:selectOneMenu>
-                <h:message for="difficulty"/>
-                
-                <h:outputLabel value="Created by:" for="company"/>
-                <h:inputText id="company" readonly="true" value="#{organizationBean.logedUsername}"
-                             label="Company"/>
-                <h:message for="company"/>
-                
-                <h:panelGroup/>
-                <h:commandButton id="create" value="Create Project" action="#{projectBean.create}"/>
-                
-            </h:panelGrid>
-        </h:form>
+                        <h:outputLabel value="Deliverables:" for="deliverables"/>
+                        <h:inputText id="deliverables" value="#{projectBean.project.deliverables}"
+                                     label="Deliverables"/>
+                        <h:message for="deliverables"/>
+
+                        <h:outputLabel value="Difficulty" for="difficulty"/>
+                        <h:selectOneMenu id="difficulty" value="#{projectBean.project.difficulty}"
+                                         label="Difficulty">
+                            <f:selectItem itemLabel="" itemValue=""/>
+                            <f:selectItem itemLabel="Easy" itemValue="easy"/>
+                            <f:selectItem itemLabel="Average" itemValue="average" />
+                            <f:selectItem itemLabel="Difficult" itemValue="difficult"/>
+                        </h:selectOneMenu>
+                        <h:message for="difficulty"/>
+
+                        <h:outputLabel value="Created by:" for="company"/>
+                        <h:inputText id="company" readonly="true" value="#{organizationBean.logedUsername}"
+                                     label="Company"/>
+                        <h:message for="company"/>
+
+                        <h:panelGroup/>
+                        <h:commandButton id="create" value="Create Project" action="#{projectBean.create}"/>
+
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
     </h:body>
 </html>
 

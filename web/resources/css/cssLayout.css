@@ -41,6 +41,7 @@
 }
 
 .right_content {
+    
     background-color: #dddddd;
     padding: 5px;
     margin: 0px 170px 0px 170px;
@@ -57,5 +58,7 @@
   font-weight : bold;
   text-decoration : underline;
 }
-
+.right_menu{
+    float: right;
+}
 

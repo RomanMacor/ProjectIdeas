@@ -132,7 +132,7 @@ public class ProjectBean extends BaseBean{
     }
     public String prepareList(){
         searchString = "";
-        return "/list_projects";
+        return "/index";
     }
     public List<Project> getProjectsByName() {
         return ejbProjectService.getProjectsByName(searchString);
