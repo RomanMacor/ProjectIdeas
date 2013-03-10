@@ -16,17 +16,22 @@
 
         <div id="top" class="top">
             <ui:insert name="top">
-                <h:outputText value="Welcome, #{organizationBean.logedUsername}" class="subtitle"  />
-                <br/>
-                <h:link  value="Home" outcome="#{projectBean.prepareList()}" />
-                <h:link value="Profile" outcome="/project/index" rendered="#{organizationBean.loggedIn}"/>
-                <h:link value="Create a new project" outcome="#{projectBean.prepareCreate()}" />
-                <h:link value="Edit my organization details" outcome="#{organizationBean.prepareEditOrganization()}" />
-                <h:link value="Change password" outcome="change_password"  />
-
                 <h:form>
                     <h:commandLink class="right_menu" action="#{organizationBean.logout()}" value="Logout" />
                 </h:form>
+
+                <h:outputText value="Welcome, #{organizationBean.logedUsername}" id="greeting" />
+                <br/>
+                <h:panelGrid columns="5">
+                    <h:link  value="Home" outcome="#{projectBean.prepareList()}" />
+                    <h:link value="Profile" outcome="/project/index" rendered="#{organizationBean.loggedIn}"/>
+                    <h:form>
+                        <h:commandLink value="Create new project" action="#{projectBean.prepareCreate()}" />
+                    </h:form>
+                    <h:link value="Edit my organization details" outcome="#{organizationBean.prepareEditOrganization()}" />
+                    <h:link value="Change password" outcome="change_password"  />
+                </h:panelGrid>
+
 
             </ui:insert>
         </div>

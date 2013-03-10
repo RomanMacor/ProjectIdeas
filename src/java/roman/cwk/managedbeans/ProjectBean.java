@@ -128,7 +128,7 @@ public class ProjectBean extends BaseBean{
             addErrorMessage(ex.getMessage());
             return "";
         }
-        return "/project/list";
+        return "/project/index";
     }
     public String prepareList(){
         searchString = "";

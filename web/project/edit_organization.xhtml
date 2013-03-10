@@ -11,7 +11,7 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h3>Edit organization detail.</h3>
+                <h3>Edit organization detail</h3>
                 <h:form>
                     <h:panelGrid columns="3">
                         <h:outputLabel value="Organization name:" for="oName"/>
@@ -45,8 +45,9 @@
                         </h:inputText>
                         <h:message id="emailMessage" for="email"/>
 
+                        <h:commandButton id="cancel" value="Cancel" action="/project/index" immediate="true"/>
                         <h:commandButton id="register" value="Save" action="#{organizationBean.edit}"/>
-                        <h:commandButton id="cancel" value="Cancel" action="/project/index"/>
+                        
 
                     </h:panelGrid>
                 </h:form>

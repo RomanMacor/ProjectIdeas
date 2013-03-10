@@ -9,10 +9,9 @@
     <h:body>
         <ui:composition template="./template.xhtml">
             <ui:define name="content">
-                Your account has been created, please follow this link to the login page.
+                Your account has been created.
                 <br/>
-                <!--<ui:include src="/project/index.xhtml" />-->
-                <h:link outcome="project/index" value="Login." />
+                <ui:include src="/login.xhtml" />
             </ui:define>
 
         </ui:composition>

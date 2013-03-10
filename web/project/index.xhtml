@@ -12,7 +12,8 @@
 
             <ui:define name="content">
                 <h:form>
-                    <h:dataTable value="#{projectBean.projectsForLogedUser}" var="project"  cellspacing="10">
+                    <h:dataTable value="#{projectBean.projectsForLogedUser}" var="project" class="table_detail"
+                                 border="1" cellpadding="5" cellspacing="4">
                         <!--                                <f:facet name="header" >
                                                             <h:column><f:facet name="header" >Title</f:facet></h:column>
                                                             <h:column> <h:outputText value="Title" /> </h:column>
@@ -40,10 +41,6 @@
                         <h:column>
                             <f:facet name="header" >Difficulty</f:facet>
                                 #{project.difficulty}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header" >Title</f:facet>
-                                #{project.objective}
                         </h:column>
 
                         <h:column> <h:commandButton action="#{projectBean.prepareEdit(project.id)}" value="Edit"/> </h:column>

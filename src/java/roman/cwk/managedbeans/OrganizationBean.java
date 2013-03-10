@@ -97,7 +97,7 @@ public class OrganizationBean extends BaseBean {
     public String edit() {
 
         organization = ejbOrganizationService.edit(organization);
-
+        
         return "/project/index";
     }
 

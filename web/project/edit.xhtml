@@ -11,7 +11,7 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h3>Edit project idea.</h3>
+                <h3>Edit project idea</h3>
                 <h:form>
                     <h:panelGrid columns="3">
                         <h:outputLabel value="Project title: *" for="pTitle"/>
@@ -49,8 +49,9 @@
                                      label="Company"/>
                         <h:message for="company"/>
 
+                        <h:commandButton id="cancel" value="Cancel" action="/project/list" immediate="true"/>
                         <h:commandButton id="edit" value="Save" action="#{projectBean.edit}"/>
-                        <h:commandButton id="cancel" value="Cancel" action="/project/list"/>
+                        
 
                     </h:panelGrid>
                 </h:form>

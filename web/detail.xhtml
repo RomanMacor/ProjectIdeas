@@ -9,33 +9,31 @@
     <h:body>
         <ui:composition template="./template.xhtml">
             <ui:define name="content">
-                <h2>Detail page about the item.</h2>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Project title:" for="pTitle"/>
+                <h2>Detail page</h2>
+                <h:panelGrid columns="2" class="table_detail" border="1" cellpadding="5" cellspacing="2">
+                    <h:outputLabel value="Project title:" for="pTitle" class="t_header"/>
                     <h:outputText id="pTitle" value="#{projectBean.project.title}"/>
 
-                    <h:outputLabel value="Project objective:" for="pObjective"/>
+                    <h:outputLabel value="Project objective:" for="pObjective" class="t_header"/>
                     <h:outputText id="pObjective" value="#{projectBean.project.objective}"/>
 
-                    <h:outputLabel value="Academic questions:" for="aQuestions"/>
+                    <h:outputLabel value="Academic questions:" for="aQuestions" class="t_header"/>
                     <h:outputText id="aQuestions" value="#{projectBean.project.academicQuestions}"/>
 
-                    <h:outputLabel value="Deliverables:" for="deliverables"/>
+                    <h:outputLabel value="Deliverables:" for="deliverables" class="t_header"/>
                     <h:outputText id="deliverables" value="#{projectBean.project.deliverables}"/>
 
-                    <h:outputLabel value="Difficulty" for="difficulty"/>
+                    <h:outputLabel value="Difficulty" for="difficulty" class="t_header"/>
                     <h:outputText id="difficulty" value="#{projectBean.project.difficulty}" />
 
-                    <h:outputLabel value="Created by:" for="company"/>
+                    <h:outputLabel value="Created by:" for="company" class="t_header"/>
                     <h:outputText id="company" value="#{projectBean.project.organization.organizationName}"/>
 
-                    <h:outputLabel value="Contact Name:" for="company"/>
+                    <h:outputLabel value="Contact Name:" for="company" class="t_header"/>
                     <h:outputText id="contactName" value="#{projectBean.project.organization.contactName}"/>
 
-                    <h:outputLabel value="Email:" for="company"/>
+                    <h:outputLabel value="Email:" for="company" class="t_header"/>
                     <h:outputText id="email" value="#{projectBean.project.organization.email}"/>
-
-                    <h:panelGroup/>
 
                 </h:panelGrid>
             </ui:define>

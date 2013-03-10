@@ -15,25 +15,27 @@
     <h:body>
 
         <div id="top" class="top">
-            <!--<h:panelGrid columns="1" >-->
-            
-                <h:link value="Home" outcome="#{projectBean.prepareList()}" />
-                <h:link value="Go to profile" outcome="/project/index" rendered="#{organizationBean.loggedIn}"/>
-                
-                <h:link value="Sign up" outcome="/registration" />
-                
-                <h:link value="Login" class="right_menu" outcome="/project/index" rendered="#{!organizationBean.loggedIn}"/>
-            
+            <h:panelGrid columns="2" class="right_menu">
+                <h:link value="Login"  outcome="/project/index" rendered="#{!organizationBean.loggedIn}"/>
                 <h:form>
-                    <h:commandLink class="right_menu"  action="#{organizationBean.logout()}" value="Logout" rendered="#{organizationBean.loggedIn}"/>
+                    <h:commandLink action="#{organizationBean.logout()}" value="Logout" rendered="#{organizationBean.loggedIn}"/>
                 </h:form>
-                <!--<h:link outcome="/list_projects" value="List all projects" />-->
-            <!--</h:panelGrid>-->
+            </h:panelGrid>
+            <h:panelGrid columns="4">
+                <h:link value="Home" outcome="#{projectBean.prepareList()}" />
+                <h:link value="Profile" outcome="/project/index" rendered="#{organizationBean.loggedIn}"/>
+                <h:form>
+                    <h:commandLink value="Create new project" action="#{projectBean.prepareCreate()}" />
+                </h:form>
+                <h:link value="Sign up" outcome="/registration" />
+            </h:panelGrid>
+
         </div>
 
         <div id="content" class="center_content">
             <ui:insert name="content">Content</ui:insert>
         </div>
+
 
     </h:body>
 
