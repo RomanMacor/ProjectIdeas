@@ -5,8 +5,9 @@
 package roman.cwk.bus;
 
 /**
+ * Exception class for business logic exceptions.
  *
- * @author Terrorhunt
+ * @author Roman Macor
  */
 public class BusinessException extends Exception {
 

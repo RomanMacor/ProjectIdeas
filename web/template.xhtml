@@ -22,7 +22,9 @@
                 </h:form>
             </h:panelGrid>
             <h:panelGrid columns="4">
-                <h:link value="Home" outcome="#{projectBean.prepareList()}" />
+                <h:form>
+                    <h:commandLink value="Home" action="#{projectBean.prepareList()}" />
+                </h:form>
                 <h:link value="Profile" outcome="/project/index" rendered="#{organizationBean.loggedIn}"/>
                 <h:form>
                     <h:commandLink value="Create new project" action="#{projectBean.prepareCreate()}" />

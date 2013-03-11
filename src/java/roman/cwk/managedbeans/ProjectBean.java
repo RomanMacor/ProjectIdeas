@@ -16,20 +16,20 @@ import roman.cwk.bus.ProjectService;
 import roman.cwk.entity.Project;
 
 /**
+ * Controller, managed bean for project ideas. Adds error messages to the view
+ * if necessary.
  *
  * @author Roman Macor
  */
 @ManagedBean
 //@RequestScoped
 @SessionScoped
-public class ProjectBean extends BaseBean{
+public class ProjectBean extends BaseBean {
 
     private Project project;
-    private String searchString ="";
+    private String searchString = "";
     @EJB
     private ProjectService ejbProjectService;
-//    @ManagedProperty(value="#{registrationBean}")
-//    private RegistrationBean registration;
 
     /**
      * Creates a new instance of ProjectBean
@@ -55,9 +55,13 @@ public class ProjectBean extends BaseBean{
     public void setSearchString(String searchString) {
         this.searchString = searchString;
     }
-    
-    
 
+    /**
+     * Create new project according to user input.
+     *
+     * @return String that redirects to index page for logged users, or empty
+     * string if the page can not be prepared.
+     */
     public String create() {
         String organizationName = this.getLogedUsername();
         try {
@@ -67,11 +71,14 @@ public class ProjectBean extends BaseBean{
             addErrorMessage(ex.getMessage());
             return "";
         }
-        return "/project/list";
+        return "/project/index";
     }
 
-    
-
+    /**
+     * Get project for user that is logged in.
+     *
+     * @return List of projects that belongs to the logged user.
+     */
     public List getProjectsForLogedUser() {
         String organizationName = this.getLogedUsername();
         List projects = new ArrayList();
@@ -84,6 +91,13 @@ public class ProjectBean extends BaseBean{
         return projects;
     }
 
+    /**
+     * Prepare show project detail page.
+     *
+     * @param id id of project idea which detail is to be shown
+     * @return String that redirects to the detail page, or empty string if the
+     * page can not be prepared.
+     */
     public String prepareDetail(Long id) {
         try {
             project = ejbProjectService.prepareDetail(id);
@@ -95,11 +109,23 @@ public class ProjectBean extends BaseBean{
         return "detail";
     }
 
+    /**
+     * Prepare create new project page.
+     *
+     * @return string that redirects to the create new project page, or empty
+     * string if the page can not be prepared.
+     */
     public String prepareCreate() {
         project = new Project();
         return "/project/create";
     }
 
+    /**
+     * Deletes project idea.
+     *
+     * @param projectId id of idea that is to be deleted.
+     * @return string that redirects to index for logged user page.
+     */
     public String detele(Long projectId) {
         try {
             ejbProjectService.detele(projectId);
@@ -107,9 +133,16 @@ public class ProjectBean extends BaseBean{
             Logger.getLogger(ProjectBean.class.getName()).log(Level.SEVERE, null, ex);
             addErrorMessage(ex.getMessage());
         }
-        return "/project/list";
+        return "/project/index";
     }
 
+    /**
+     * Prepares edit project idea page.
+     *
+     * @param projectId id of the project that is to be edited
+     * @return String that redirect to edit project idea page, or empty string
+     * if the page can not be prepared.
+     */
     public String prepareEdit(Long projectId) {
         try {
             this.project = ejbProjectService.prepareEdit(projectId);
@@ -120,7 +153,14 @@ public class ProjectBean extends BaseBean{
         }
         return "/project/edit";
     }
-    public String edit(){
+
+    /**
+     * Edit project idea
+     *
+     * @return String that redirect to the index page for logged users, or empty
+     * string if the page can not be prepared.
+     */
+    public String edit() {
         try {
             project = ejbProjectService.edit(project);
         } catch (BusinessException ex) {
@@ -130,15 +170,32 @@ public class ProjectBean extends BaseBean{
         }
         return "/project/index";
     }
-    public String prepareList(){
+
+    /**
+     * Sets searchString to empty string.
+     *
+     * @return String that redirects to home page.
+     */
+    public String prepareList() {
         searchString = "";
         return "/index";
     }
+
+    /**
+     * Get projects that contain search String in the title
+     *
+     * @return List of projects which contains the searchString in the title
+     */
     public List<Project> getProjectsByName() {
         return ejbProjectService.getProjectsByName(searchString);
     }
+
+    /**
+     * Refresh index page.
+     *
+     * @return String that redirect to index page.
+     */
     public String searchByName() {
-        return "/list_projects";
+        return "/index";
     }
-    
 }

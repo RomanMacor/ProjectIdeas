@@ -12,16 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
+ * Entity class for projects. Contains getters and setters methods.
  *
  * @author Roman Macor
  */
 @Entity
 public class Project implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
     private String title;
     private String objective;
     private String academicQuestions;
@@ -71,9 +72,9 @@ public class Project implements Serializable {
     }
 
     public Organization getOrganization() {
-        if (organization == null){
+        if (organization == null) {
             return new Organization();
-        }else{
+        } else {
             return organization;
         }
     }
@@ -81,8 +82,7 @@ public class Project implements Serializable {
     public void setOrganization(Organization organization) {
         this.organization = organization;
     }
-    
-    
+
     public Long getId() {
         return id;
     }
@@ -100,7 +100,6 @@ public class Project implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Project)) {
             return false;
         }
@@ -115,5 +114,4 @@ public class Project implements Serializable {
     public String toString() {
         return "roman.cwk.entity.Project[ id=" + id + " ]";
     }
-    
 }

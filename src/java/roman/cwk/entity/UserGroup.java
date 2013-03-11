@@ -6,17 +6,18 @@ package roman.cwk.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
+ * Entity class for user group. For security restrains purposes. Contains
+ * getters and setters methods.
  *
  * @author Roman Macor
  */
 @Entity
 public class UserGroup implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @NotNull
@@ -31,8 +32,7 @@ public class UserGroup implements Serializable {
     public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
     }
-    
-    
+
     public String getGroupName() {
         return groupName;
     }
@@ -50,7 +50,6 @@ public class UserGroup implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the groupName fields are not set
         if (!(object instanceof UserGroup)) {
             return false;
         }
@@ -65,5 +64,4 @@ public class UserGroup implements Serializable {
     public String toString() {
         return "roman.cwk.entity.UserGroup[ id=" + groupName + " ]";
     }
-    
 }

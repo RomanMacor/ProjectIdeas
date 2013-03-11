@@ -13,15 +13,13 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 import roman.cwk.bus.BusinessException;
 import roman.cwk.bus.OrganizationService;
 import roman.cwk.entity.Organization;
-import roman.cwk.entity.UserGroup;
-import roman.cwk.sessionbeans.OrganizationFacade;
-import roman.cwk.sessionbeans.UserGroupFacade;
 
 /**
+ * Controller, managed bean for organization and registration of new user. Adds
+ * error messages to the view if necessary.
  *
  * @author Roman Macor
  */
@@ -30,7 +28,6 @@ import roman.cwk.sessionbeans.UserGroupFacade;
 @SessionScoped
 public class OrganizationBean extends BaseBean {
 
-    //all the organization will fall to this group
     private Organization organization;
     private String repeatPassword;
     private String currentPassword;
@@ -70,6 +67,11 @@ public class OrganizationBean extends BaseBean {
         this.repeatPassword = repeatPassword;
     }
 
+    /**
+     * Register a new user. (Create organization) according to user input.
+     *
+     * @return String redirecting to confirmation page.
+     */
     public String register() {
         try {
             ejbOrganizationService.register(organization);
@@ -81,6 +83,11 @@ public class OrganizationBean extends BaseBean {
         return "confirmation";
     }
 
+    /**
+     * Prepare view for editing organization details.
+     *
+     * @return String that redirects to edit organization page
+     */
     public String prepareEditOrganization() {
 
         String organizationName = this.getLogedUsername();
@@ -94,13 +101,23 @@ public class OrganizationBean extends BaseBean {
         return "/project/edit_organization";
     }
 
+    /**
+     * Edit organization details.
+     *
+     * @return String that redirects to index page for logged users.
+     */
     public String edit() {
 
         organization = ejbOrganizationService.edit(organization);
-        
+
         return "/project/index";
     }
 
+    /**
+     * Changes password.
+     *
+     * @return String that redirects to index page for logged users.
+     */
     public String changePassword() {
         try {
             ejbOrganizationService.changePassword(currentPassword, organization);
@@ -112,6 +129,14 @@ public class OrganizationBean extends BaseBean {
         return "/project/index";
     }
 
+    /**
+     * Validator method that checks whether the password and the repeat password
+     * are the same.
+     *
+     * @param context current instance of FacesContext
+     * @param toValidate component to be validated.
+     * @param value value of the component.
+     */
     public void checkPasswordsEquality(FacesContext context,
             UIComponent toValidate, Object value) {
 

@@ -7,26 +7,25 @@ package roman.cwk.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
+ * Entity class for organizations that create and manage project ideas. Contains
+ * getters and setters methods
  *
  * @author Roman Macor
  */
 @Entity
 public class Organization implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @NotNull
     private String organizationName;
     @NotNull
     private String password;
-    
-    //Change to a better type
     private String address;
     private String contactName;
     private String phoneNumber;
@@ -42,7 +41,6 @@ public class Organization implements Serializable {
         this.password = password;
     }
 
-    
     public String getOrganizationName() {
         return organizationName;
     }
@@ -90,8 +88,6 @@ public class Organization implements Serializable {
     public void setProjects(Collection<Project> projects) {
         this.projects = projects;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -116,5 +112,4 @@ public class Organization implements Serializable {
     public String toString() {
         return "roman.cwk.entity.Organization[ name=" + organizationName + " ]";
     }
-    
 }
