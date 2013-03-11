@@ -7,7 +7,6 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
         <h:outputStylesheet name="css/default.css" />
         <h:outputStylesheet name="css/cssLayout.css" />
         <title>Project Ideas</title>
@@ -28,9 +27,7 @@
                     <h:commandLink value="Home" action="#{projectBean.prepareList()}" />
                 </h:form>
                 <h:link value="Profile" outcome="/project/index" rendered="#{organizationBean.loggedIn}"/>
-                <h:form>
-                    <h:commandLink value="Create new project" action="#{projectBean.prepareCreate()}" />
-                </h:form>
+                <h:link value="Create new project" outcome="/project/create" rendered="#{!organizationBean.loggedIn}"/>
                 <h:link value="Sign up" outcome="/registration" />
             </h:panelGrid>
 
