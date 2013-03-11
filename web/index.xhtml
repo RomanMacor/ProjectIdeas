@@ -13,10 +13,11 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h1 class="title">Project ideas web application</h1>
+                <h1 class="title">Project Ideas Web Application</h1>
                 <h:form>
-                    <h:panelGrid columns="3">
+                    <h:panelGrid columns="2">
                         <h:outputLabel for="searchString" value="Search by title: "/>
+                        <h:panelGroup/>
                         <h:inputText label="Search String" value="#{projectBean.searchString}"
                                      autocomplete="off" >
                             <f:ajax  render="listOfProjects" event="keyup"/>

@@ -20,7 +20,6 @@
                 <h:link value="Login"  outcome="/project/index" rendered="#{!organizationBean.loggedIn}"/>
                 <h:form>
                     <h:commandLink action="#{organizationBean.logout()}" value="Logout" rendered="#{organizationBean.loggedIn}">
-                        <f:ajax  />
                     </h:commandLink>
                 </h:form>
             </h:panelGrid>
