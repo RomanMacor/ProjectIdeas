@@ -152,4 +152,5 @@ public class OrganizationBean extends BaseBean {
                     new FacesMessage("Passwords don't match."));
         }
     }
+    
 }

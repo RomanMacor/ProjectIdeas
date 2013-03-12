@@ -45,7 +45,9 @@ public abstract class BaseBean {
         HttpSession session;
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         session.invalidate();
-        return "/index";
+
+        return "/index?faces-redirect=true";
+
     }
 
     /**
