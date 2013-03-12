@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Abstract class that contains method which are common for both managed beans.
  *
- * @author Terrorhunt
+ * @author Roman Macor
  */
 public abstract class BaseBean {
 
