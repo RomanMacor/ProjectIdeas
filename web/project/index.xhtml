@@ -12,16 +12,10 @@
 
             <ui:define name="content">
                 <h:form>
+                    <h2>My Project Ideas</h2>
                     <h:dataTable value="#{projectBean.projectsForLogedUser}" var="project" class="table_detail"
                                  border="1" cellpadding="5" cellspacing="4">
-                        <!--                                <f:facet name="header" >
-                                                            <h:column><f:facet name="header" >Title</f:facet></h:column>
-                                                            <h:column> <h:outputText value="Title" /> </h:column>
-                                                            <h:column> <h:outputText value="Objective" /> </h:column>
-                                                            <h:column> <h:outputText value="Academic questions" /> </h:column>
-                                                            <h:column> <h:outputText value="Deliverables" /> </h:column>
-                                                            <h:column> <h:outputText value="Difficulty" /> </h:column>
-                                                        </f:facet>-->
+                   
                         <h:column>
                             <f:facet name="header" >Title</f:facet>
                                 #{project.title}

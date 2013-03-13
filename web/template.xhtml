@@ -26,7 +26,7 @@
                     <h:commandLink value="Home" action="#{projectBean.prepareList()}" />
                 </h:form>
                 <h:link value="Profile" outcome="/project/index" rendered="#{organizationBean.loggedIn}"/>
-                <h:link value="Sign up to create new projets" outcome="/registration" />
+                <h:link value="Sign up to create new projets" outcome="/registration" rendered="#{!organizationBean.loggedIn}"/>
             </h:panelGrid>
 
         </div>
