@@ -21,12 +21,19 @@
                     </h:commandLink>
                 </h:form>
             </h:panelGrid>
-            <h:panelGrid columns="3">
+            <h:outputText value="Welcome, #{organizationBean.logedUsername}" id="greeting" />
+            <br/>
+            <h:panelGrid columns="5">
                 <h:form>
                     <h:commandLink value="Home" action="#{projectBean.prepareList()}" />
                 </h:form>
-                <h:link value="Profile" outcome="/project/index" rendered="#{organizationBean.loggedIn}"/>
                 <h:link value="Sign up to create new projets" outcome="/registration" rendered="#{!organizationBean.loggedIn}"/>
+                <h:link value="Profile" outcome="/project/index" rendered="#{organizationBean.loggedIn}" />
+                <h:form>
+                    <h:commandLink value="Create new project" action="#{projectBean.prepareCreate()}" rendered="#{organizationBean.loggedIn}"/>
+                </h:form>
+                <h:link value="Edit my organization details" outcome="#{organizationBean.prepareEditOrganization()}" rendered="#{organizationBean.loggedIn}"/>
+                <h:link value="Change password" outcome="/project/change_password"  rendered="#{organizationBean.loggedIn}"/>
             </h:panelGrid>
 
         </div>
